@@ -1,27 +1,66 @@
-#include<stdio.h>
-#include<string.h>
-int count_vowels(char *str);
-int main()
+#include <stdio.h>
+int main() 
 {
- char str[100]; 
-  printf("Enter any string :: ");
-    gets(str);
-   printf("\n Total no. of vowels in String [ %s ] = %d\n",str,count_vowels(str));
-   return 0;
-}
-int count_vowels(char *str)
-{
-    if(*str == '\0')
-    return 0;
-    switch(*str)
+    char str[100];
+    printf("Enter the length of the string:");
+    int n;
+    scanf("%d",&n);
+    printf("Enter the string:");
+    scanf("%s",str);
+    int vowelCount[5]={0};
+    for(int i=0;i<n;i++) 
     {
-            case 'A': case 'a':
-             case 'E': case 'e':
-             case 'I': case 'i':
-             case 'O': case 'o':
-             case 'U': case 'u':
-             return 1 + count_vowels(str+1);
-                default:
-             return count_vowels(str+1);
+     char currentChar=str[i];
+     switch (currentChar) 
+     {
+         case 'a':
+         case 'A':
+         vowelCount[0]++;
+         break;
+         case 'e':
+         case 'E':
+         vowelCount[1]++;
+         break;
+         case 'i':
+         case 'I':
+         vowelCount[2]++;
+         break;
+         case 'o':
+         case 'O':
+         vowelCount[3]++;
+         break;
+         case 'u':
+         case 'U':
+         vowelCount[4]++;
+         break;
+         default:
+         break;
+        }
     }
+    int maxCount=vowelCount[0];
+    char mostFrequentVowel='a';
+    for(int i=1;i<5;i++) 
+    {
+    if (vowelCount[i]>maxCount) 
+    {
+    maxCount=vowelCount[i];
+    switch (i) 
+    {
+    case 1:
+    mostFrequentVowel='e';
+    break;
+    case 2:
+    mostFrequentVowel='i';
+    break;
+    case 3:
+    mostFrequentVowel='o';
+    break;
+    case 4:
+    mostFrequentVowel='u';
+    break;
+   }
+  }
+ }
+    printf("Most frequent vowel: %c\n", mostFrequentVowel);
+   return 0;
 }
